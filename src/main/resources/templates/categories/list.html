@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<div th:insert="~{fragments/header :: header}"></div>
+
+<body id="page-top">
+
+	<div th:insert="~{fragments/navbar :: navbar}"></div>
+
+	<div id="wrapper">
+
+		<!-- Sidebar -->
+
+		<div th:insert="~{fragments/sidebar :: sidebar}"></div>
+
+		<div id="content-wrapper">
+
+			<div class="container-fluid">
+				<!-- Breadcrumbs-->
+				<div th:insert="~{fragments/address :: address}"></div>
+				<div>
+					<a th:href="@{/admin/categories/add}" class="btn btn-primary">Add new</a>
+				</div>
+				<br>
+				<!-- DataTables Example -->
+				<div class="card mb-3">
+					<div class="card-header">
+						<i class="fas fa-table"></i> List categories
+					</div>
+					<span>
+					</span>
+					<div class="card-body">
+						<div class="table-responsive">
+							<table class="table table-bordered" id="dataTable" width="100%"
+								cellspacing="0">
+								<thead>
+									<tr>
+										<th>No</th>
+										<th>Category Name</th>
+										<th>Reg Date</th>
+										<th>Mod Date</th>
+										<th>Action</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr th:each="row,rowStat : ${categories}">
+										<td th:text="${rowStat.count}">1</td>
+										<td th:text="${row.categoryName}"></td>
+										<td th:text="${#dates.format(row.regDate, 'dd-MMM-yyyy')}"></td>
+										<td th:text="${#dates.format(row.modDate, 'dd-MMM-yyyy')}"></td>
+										<td>
+										
+										<a th:href="@{/admin/categories/update(id=${row.categoryId})}" class="btn btn-primary">View</a>
+										<a th:href="@{/admin/categories/update(id=${row.categoryId})}" class="btn btn-info">Update</a>
+										<a th:href="@{/admin/categories/delete(id=${row.categoryId})}" class="btn btn-danger">Delete</a>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="card-footer small text-muted">Updated yesterday
+						at 11:59 PM</div>
+				</div>
+
+			</div>
+			<!-- /.container-fluid -->
+
+			<!-- Sticky Footer -->
+			<div th:insert="~{fragments/footer :: footer}"></div>
+
+		</div>
+		<!-- /.content-wrapper -->
+
+	</div>
+	<!-- /#wrapper -->
+
+</body>
+
+</html>
+

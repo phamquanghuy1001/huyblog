@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<div th:insert="~{fragments/header :: header}"></div>
+
+<body id="page-top">
+
+	<div th:insert="~{fragments/navbar :: navbar}"></div>
+
+	<div id="wrapper">
+
+		<!-- Sidebar -->
+
+		<div th:insert="~{fragments/sidebar :: sidebar}"></div>
+
+		<div id="content-wrapper">
+
+			<div class="container-fluid">
+			
+				<!-- Breadcrumbs-->
+				<div th:insert="~{fragments/address :: address}"></div>
+				
+				<form action="#" th:action="@{/admin/categories}" th:object="${category}" method="post">
+					<div class="form-group">
+						<label for="exampleFormControlInput1">Category Name</label> <input
+							type="text" class="form-control" id="exampleFormControlInput1"
+							placeholder="Category name" th:field="*{categoryName}" >
+					</div>
+					<button type="submit" class="btn btn-primary">Submit</button>
+				</form>
+
+			</div>
+			<!-- /.container-fluid -->
+
+			<!-- Sticky Footer -->
+			<div th:insert="~{fragments/footer :: footer}"></div>
+
+		</div>
+		<!-- /.content-wrapper -->
+
+	</div>
+	<!-- /#wrapper -->
+
+</body>
+
+</html>
